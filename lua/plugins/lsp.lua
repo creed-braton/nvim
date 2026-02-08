@@ -1,12 +1,9 @@
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
 
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
@@ -35,20 +32,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- list of language servers: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-require('lspconfig').gopls.setup({settings = {
-  gopls = {
-    buildFlags = {"-tags=test integration dev"}
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      buildFlags = {"-tags=test integration dev"}
+    }
   }
-}})
-require('lspconfig').rust_analyzer.setup({})
-require('lspconfig').ts_ls.setup({})
-require('lspconfig').html.setup({})
-require('lspconfig').cssls.setup({})
-require('lspconfig').dockerls.setup({})
-require('lspconfig').terraformls.setup({})
-require('lspconfig').clangd.setup({})
-require('lspconfig').pylsp.setup({})
--- require('lspconfig').lua_ls.setup({})
+})
+
+vim.lsp.enable({
+  'gopls',
+  'rust_analyzer',
+  'ts_ls',
+  'html',
+  'cssls',
+  'dockerls',
+  'terraformls',
+  'clangd',
+  'pylsp',
+})
 
 local cmp = require('cmp')
 
