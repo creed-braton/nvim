@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- list of language servers: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 require('lspconfig').gopls.setup({settings = {
   gopls = {
-    buildFlags = {"-tags=test integration"}
+    buildFlags = {"-tags=test integration dev"}
   }
 }})
 require('lspconfig').rust_analyzer.setup({})
@@ -86,7 +86,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.py",
   callback = function()
     local file = vim.fn.expand("%")
-    vim.fn.system({"black", "--fast", file})
+    vim.fn.system({"black", "--fast", file, "--line-length", "79"})
     vim.cmd("silent! checktime")
   end,
 })
