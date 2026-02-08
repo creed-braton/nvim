@@ -40,7 +40,7 @@ return packer.startup(function(use)
 
     -- visuals
     use("folke/tokyonight.nvim")
-    use("nvim-treesitter/nvim-treesitter", {run = "TSUpdate"})
+    use({"nvim-treesitter/nvim-treesitter", run = "TSUpdate"})
     use("nvim-lualine/lualine.nvim")
     use("kyazdani42/nvim-web-devicons")
     use("xiyaowong/transparent.nvim")
