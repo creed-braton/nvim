@@ -1,6 +1,10 @@
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
 
+vim.diagnostic.config({
+  virtual_text = true,
+})
+
 vim.lsp.config('*', {
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
