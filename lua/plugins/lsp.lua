@@ -5,6 +5,21 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'gopls',
+    'rust_analyzer',
+    'ts_ls',
+    'html',
+    'cssls',
+    'dockerls',
+    'terraformls',
+    'clangd',
+    'pylsp',
+  },
+})
+
 vim.lsp.config('*', {
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
