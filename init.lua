@@ -11,3 +11,7 @@ require("plugins.lsp")
 require("plugins.autopairs")
 require("plugins.vimtex")
 -- require("plugins.transparent")
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function() pcall(vim.treesitter.start) end,
+})
